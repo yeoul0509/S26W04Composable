@@ -50,25 +50,31 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen() {
-    var count1 by remember { mutableIntStateOf(0) }
-    var count2 by remember { mutableIntStateOf(0) }
+    val counters = remember {
+        mutableStateListOf(
+            mutableIntStateOf(0),
+            mutableIntStateOf(0)
+        )
+    }
+
+    val modifiers = remember {
+        listOf(
+            Modifier.background(Color(0xFFE8DEF8)),
+            Modifier.background(Color(0XFFE9F680)),
+        )
+    }
 
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         Column(
             modifier = Modifier.padding(innerPadding)
         ) {
-            Counter(
-                modifier = Modifier.background(Color(0xFFE8DEF8)),
-                count = count1
-            ) {
-                count1 = it
-            }
-
-            Counter(
-                modifier = Modifier.background(Color(0XFFE9F680)),
-                count = count2
-            ) {
-                count2 = it
+            counters.forEachIndexed { index, state ->
+                Counter(
+                    modifier = modifiers[index],
+                    count = state.intValue
+                ) {
+                    state.intValue = it
+                }
             }
         }
     }
