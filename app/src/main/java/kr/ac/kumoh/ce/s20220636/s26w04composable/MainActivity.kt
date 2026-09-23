@@ -48,33 +48,38 @@ fun MainScreen() {
         Column(
             modifier = Modifier.padding(innerPadding)
         ) {
-            var count by remember { mutableIntStateOf(0) }
+            Counter()
+        }
+    }
+}
 
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = count.toString(),
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .fillMaxWidth()
-                        .background(Color(0xFFFE7A36)),
-                    color = Color.White,
-                    fontSize = 100.sp,
-                    textAlign = TextAlign.Center,
-                )
+@Composable
+fun Counter() {
+    var count by remember { mutableIntStateOf(0) }
 
-                Button(
-                    modifier = Modifier.padding(8.dp).fillMaxWidth(),
-                    onClick = {
-                        count++
-                    }
-                ) {
-                    Text("증가", fontSize = 30.sp)
-                }
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = count.toString(),
+            modifier = Modifier
+                .padding(8.dp)
+                .fillMaxWidth()
+                .background(Color(0xFFFE7A36)),
+            color = Color.White,
+            fontSize = 100.sp,
+            textAlign = TextAlign.Center,
+        )
+
+        Button(
+            modifier = Modifier.padding(8.dp).fillMaxWidth(),
+            onClick = {
+                count++
             }
+        ) {
+            Text("증가", fontSize = 30.sp)
         }
     }
 }
