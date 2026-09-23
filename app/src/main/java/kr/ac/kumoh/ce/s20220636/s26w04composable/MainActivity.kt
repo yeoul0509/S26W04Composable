@@ -90,7 +90,7 @@ fun ColumnScope.Counter(
     var expanded by remember { mutableStateOf(false) }
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .weight(1F)
             .padding(8.dp),
         verticalArrangement = Arrangement.Center,
